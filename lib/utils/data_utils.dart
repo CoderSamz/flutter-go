@@ -1,10 +1,12 @@
 import 'dart:async' show Future;
+import 'dart:convert';
 
 import 'package:fluro/fluro.dart';
 import 'package:flutter_go/model/collection.dart';
 import 'package:flutter_go/model/version.dart';
 import 'package:flutter_go/model/widget.dart';
 import 'package:package_info/package_info.dart';
+import 'package:flutter/services.dart';
 
 /// import 'package:flutter_go/model/responseData.dart';
 
@@ -108,8 +110,21 @@ class DataUtils {
 
   /// 获取widget列表处的树型数据
   static Future<List> getWidgetTreeList() async {
+//    try {
+//      var response = await NetUtils.get(Api.GET_WIDGET_TREE);
+//      print('组件树dddd：$response');
+//      if (response != null && response['success']) {
+//        return response['data'];
+//      } else {
+//        return [];
+//      }
+//    } catch (error) {
+//      print('获取组件树 error $error');
+//      return [];
+//    }
     try {
-      var response = await NetUtils.get(Api.GET_WIDGET_TREE);
+      var jsonData = await rootBundle.loadString("assets/jsons/getCateList.json");
+      var response = json.decode(jsonData);
       print('组件树dddd：$response');
       if (response != null && response['success']) {
         return response['data'];

@@ -130,7 +130,7 @@ class _MyAppState extends State<MyApp> {
         setState(() {
           _hasLogin = true;
           _isLoading = false;
-          _userInfo = hasLogin;
+          _userInfo = hasLogin as UserInformation;
           // 设置初始化的主题色
           // if (hasLogin.themeColor != 'default') {
           //   themeColor = int.parse(hasLogin.themeColor);
@@ -138,7 +138,7 @@ class _MyAppState extends State<MyApp> {
         });
       } else {
         setState(() {
-          _hasLogin = hasLogin;
+          _hasLogin = hasLogin as bool;
           _isLoading = false;
         });
       }
@@ -170,6 +170,7 @@ class _MyAppState extends State<MyApp> {
       } else {
         return LoginPage();
       }
+//      return AppPage(_userInfo);
     }
   }
 
@@ -191,7 +192,7 @@ class _MyAppState extends State<MyApp> {
           size: 35.0,
         ),
       ),
-      home: new Scaffold(body: showWelcomePage()),
+      home: new Scaffold(body: showWelcomePage() as Widget,),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Application.router.generator,
       navigatorObservers: <NavigatorObserver>[Analytics.observer],
@@ -218,6 +219,9 @@ void main() async {
     Application.widgetTree = WidgetTree.buildWidgetTree(data);
     print("Application.widgetTree>>>> ${Application.widgetTree}");
   });
+//  DefaultAssetBundle.loadString('assets/jsons/getCateList.json').then((value){
+//    print(json.decode(value));
+//  });
   db = Provider.db;
   runApp(new MyApp());
 }

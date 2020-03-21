@@ -221,6 +221,7 @@ flutter:
   - assets/app.db
   - assets/images/
   - assets/fonts/
+  - assets/jsons/
 
   fonts:
   - family: FlamanteRoma

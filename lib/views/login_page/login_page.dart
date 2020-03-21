@@ -94,6 +94,18 @@ class _LoginPageState extends State<LoginPage> {
             fontSize: 16.0);
       }
     });
+
+    // 界面渲染后，回调中切换界面，跳过登录界面，自动游客登录
+    WidgetsBinding.instance.addPostFrameCallback((callback){
+      print("addPostFrameCallback be invoke");
+      Application.router.navigateTo(
+        context,
+        Routes.home,
+        clearStack: true,
+        transition: TransitionType.nativeModal,
+      );
+    });
+
   }
 
 // 创建登录界面的TextForm
